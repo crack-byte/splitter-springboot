@@ -1,0 +1,21 @@
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_container
+    ports:
+      - "5432:5432"
+    networks:
+      - my-network
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_DB: splitter
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+networks:
+  my-network:
+    # Specify driver options
+    driver: bridge
+

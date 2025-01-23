@@ -3,8 +3,9 @@ package com.crackbyte.splitter.respository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.crackbyte.splitter.entities.Account;
+import com.crackbyte.splitter.entities.User;
+
 @Repository
-public interface AccountRepository extends JpaRepository<Account,Long>{
+public interface UserRepository extends JpaRepository<User,Long>{
 
 }

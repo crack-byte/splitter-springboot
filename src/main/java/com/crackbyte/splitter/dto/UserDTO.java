@@ -1,9 +1,12 @@
 package com.crackbyte.splitter.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.crackbyte.splitter.entities.User;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,16 +19,25 @@ import lombok.Setter;
 public class UserDTO {
     private Long id;
 
+    @NotBlank(message = "Username is required")
     private String username;
+    @NotBlank(message = "Password is required")
     private String password;
+    @NotBlank(message = "FirstName is required")
     @JsonProperty("first_name")
     private String firstName;
+    @JsonProperty("last_name")
     private String lastName;
+    @NotBlank(message = "Mobile is required")
     private String mobile;
     private String role;
+    @JsonProperty("created_at")
     private String createdAt;
+    @JsonProperty("updated_at")
     private String updatedAt;
-    public UserDTO(User user){
+    private Set<AddressDTO> addresses = new HashSet<>();
+
+    public UserDTO(User user) {
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
@@ -33,7 +45,9 @@ public class UserDTO {
         this.lastName = user.getLastName();
         this.mobile = user.getMobile();
         this.role = user.getRole();
-        this.createdAt = user.getCreatedAt().toString();
-        this.updatedAt = user.getUpdatedAt().toString();
+        user.getAddresses().forEach(address -> {
+            this.addresses.add(new AddressDTO(address));
+        });
+        // this.addresses = user.getAddresses();
     }
 }

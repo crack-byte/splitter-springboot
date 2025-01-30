@@ -1,7 +1,6 @@
 package com.crackbyte.splitter.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
